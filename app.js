@@ -28,6 +28,14 @@ app.patch('/items/:name', (req, res) => {
     res.json({"updated": item});
 });
 
+app.delete('/items/:name', (req, res) => {
+    const name = req.params.name;
+    const item = items.find(item => item.name === name);
+    const index = items.indexOf(item);
+    items.splice(index, 1);
+    res.json({"message": "Deleted"});
+});
+
 app.listen(3000, () => {
     console.log('listening on port 3000!');
 });
