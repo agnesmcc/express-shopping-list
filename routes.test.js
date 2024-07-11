@@ -42,4 +42,19 @@ test('GET /items/:name should return an item', async () => {
     })
 })      
 
+test('PATCH /items/:name should update an item', async () => {
+    const response = await request(app).patch('/items/popsicle').send({
+        price: 3.45
+    });
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toEqual({
+        updated: {
+            name: 'popsicle',
+            price: 3.45
+        }
+    })
+})          
+
+
+
 
