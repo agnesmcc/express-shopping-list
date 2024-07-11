@@ -33,4 +33,13 @@ test('POST /items should add an item', async () => {
     })
 })
 
+test('GET /items/:name should return an item', async () => {
+    const response = await request(app).get('/items/popsicle');
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toEqual({
+        name: 'popsicle',
+        price: 2.45
+    })
+})      
+
 
