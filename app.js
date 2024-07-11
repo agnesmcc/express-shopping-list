@@ -12,13 +12,20 @@ app.get('/items', (req, res) => {
 app.post('/items', (req, res) => {
     const item = req.body;
     items.push(item);
-    res.status(201).json(item);
+    res.status(201).json({"added": item});
 });
 
 app.get('/items/:name', (req, res) => {
     const name = req.params.name;
     const item = items.find(item => item.name === name);
     res.json(item);
+});
+
+app.patch('/items/:name', (req, res) => {
+    const name = req.params.name;
+    const item = items.find(item => item.name === name);
+    Object.assign(item, req.body);
+    res.json({"updated": item});
 });
 
 app.listen(3000, () => {
