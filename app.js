@@ -15,6 +15,12 @@ app.post('/items', (req, res) => {
     res.status(201).json(item);
 });
 
+app.get('/items/:name', (req, res) => {
+    const name = req.params.name;
+    const item = items.find(item => item.name === name);
+    res.json(item);
+});
+
 app.listen(3000, () => {
     console.log('listening on port 3000!');
 });
