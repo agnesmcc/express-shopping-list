@@ -55,6 +55,12 @@ test('PATCH /items/:name should update an item', async () => {
     })
 })          
 
-
-
+test('DELETE /items/:name should delete an item', async () => {
+    const response = await request(app).delete('/items/popsicle');
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toEqual({
+        message: 'Deleted'
+    })
+    expect(items.length).toBe(0);
+})
 
